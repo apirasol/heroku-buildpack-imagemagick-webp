@@ -16,7 +16,7 @@ ENV LIBDE265_VERSION=1.0.8
 RUN curl -L https://github.com/strukturag/libde265/releases/download/v$LIBDE265_VERSION/libde265-$LIBDE265_VERSION.tar.gz | tar zx \
   && cd libde265-$LIBDE265_VERSION \
   && ./autogen.sh \
-  && ./configure --prefix=/usr/src/imagemagick \
+  && ./configure \
   && make \
   && make install
 
@@ -26,7 +26,7 @@ ENV LIBHIEF_VERSION=1.12.0
 RUN curl -L https://github.com/strukturag/libheif/releases/download/v$LIBHIEF_VERSION/libheif-$LIBHIEF_VERSION.tar.gz | tar zx \
   && cd libheif-$LIBHIEF_VERSION \
   && ./autogen.sh \
-  && ./configure --prefix=/usr/src/imagemagick \
+  && ./configure \
   && make \
   && make install
 
