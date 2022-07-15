@@ -67,6 +67,10 @@ RUN curl -L http://storage.googleapis.com/downloads.webmproject.org/releases/web
   && make \
   && make install
 
+RUN cp /usr/local/lib/libde265.so.0 /usr/src/imagemagick/lib \
+  && cp /usr/local/lib/libheif.so.1 /usr/src/imagemagick/lib
+
+
 RUN cd /usr/src/imagemagick \
   && rm -rf build \
   && mkdir build \
