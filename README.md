@@ -9,7 +9,7 @@ This one works with [Heroku stack](https://devcenter.heroku.com/articles/stack) 
 Add this buildpack to your app:
 
 ```plain
-heroku buildpacks:add https://github.com/drnic/heroku-buildpack-imagemagick-webp -i 1 -a <app name>
+heroku buildpacks:add https://github.com/apirasol/heroku-buildpack-imagemagick-webp -i 1 -a <app name>
 ```
 
 And add it into your `app.json`:
@@ -17,7 +17,7 @@ And add it into your `app.json`:
 ```json
   "buildpacks": [
     {
-      "url": "https://github.com/drnic/heroku-buildpack-imagemagick-webp"
+      "url": "https://github.com/apirasol/heroku-buildpack-imagemagick-webp"
     },
     {
       "url": "heroku/ruby"
@@ -49,6 +49,24 @@ Compiler: gcc (9.3)
  heif-info  libheif version: 1.12.0
 ```
 
+## Note on usage with Active Storage and S3
+
+If you use this buildpack with a Rails app that is using Active Storage with S3 you may encounter errors when it tries to execute operations on files over https.
+
+```
+ convert: NoTagFound `https:decode' @ error/delegate.c/InvokeDelegate/1745.
+```
+
+To fix this, we had to add an .rmagick folder in the root of our rails app repo with custom configuration for Image Magick.
+In the policy.xml file, make sure you have:
+```
+<policymap>
+  ...
+  <policy domain="coder" rights="read | write" pattern="HTTPS" />
+  ...
+</policymap>
+```
+
 ## Build script
 
 To update the dependencies you have the following steps:
@@ -74,3 +92,4 @@ To update the dependencies you have the following steps:
 * <https://github.com/brandoncc/heroku-buildpack-vips>
 * <https://github.com/steeple-dev/heroku-buildpack-imagemagick>
 * <https://github.com/slagkryssaren/heroku-buildpack-imagemagick-heif>
+* <https://github.com/drnic/heroku-buildpack-imagemagick-webp>
