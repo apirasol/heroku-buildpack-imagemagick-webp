@@ -1,0 +1,4 @@
+scraps.txt
+.DS_Store
+build/*.log
+build/*.jpg
