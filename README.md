@@ -87,6 +87,13 @@ To update the dependencies you have the following steps:
 
 5. Redeploy your application via the Heroku dashboard, or push a new commit.
 
+## Run locally
+
+```
+docker run --rm -t -v $PWD/build:/data heroku-buildpack-imagemagick-webp sh -c 'magick convert https://github.com/tigranbs/test-heic-images/raw/master/image1.heic /data/img.jpg'
+```
+
+
 ### Credits
 
 * <https://github.com/brandoncc/heroku-buildpack-vips>
