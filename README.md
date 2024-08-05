@@ -2,7 +2,7 @@
 
 This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for vendoring the ImageMagick with WebP and HEIF support binaries into your project.
 
-This one works with [Heroku stack](https://devcenter.heroku.com/articles/stack) `heroku-20`.
+This one works with [Heroku stack](https://devcenter.heroku.com/articles/stack) `heroku-22`.
 
 ## Usage
 

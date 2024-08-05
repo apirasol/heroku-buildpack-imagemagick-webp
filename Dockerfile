@@ -1,4 +1,4 @@
-FROM heroku/heroku:20-build
+FROM heroku/heroku:22-build
 ARG DEBIAN_FRONTEND=noninteractive
 
 # See env vars below to update package versions
@@ -50,7 +50,7 @@ ENV LD_LIBRARY_PATH="/usr/src/imagemagick/lib:$LD_LIBRARY_PATH"
 RUN ldconfig /usr/src/imagemagick/lib/
 
 # https://github.com/ImageMagick/Website/blob/main/ChangeLog.md
-ENV IMAGEMAGICK_VERSION=7.1.0.43
+ENV IMAGEMAGICK_VERSION=7.1.0-43
 
 RUN cd /usr/src/ \
   && wget https://github.com/ImageMagick/ImageMagick/archive/refs/tags/$IMAGEMAGICK_VERSION.tar.gz \
