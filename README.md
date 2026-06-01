@@ -2,7 +2,7 @@
 
 This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for vendoring the ImageMagick with WebP and HEIF support binaries into your project.
 
-This one works with [Heroku stack](https://devcenter.heroku.com/articles/stack) `heroku-22`.
+This one works with [Heroku stack](https://devcenter.heroku.com/articles/stack) `heroku-26`.
 
 ## Usage
 
@@ -35,7 +35,7 @@ If you were to run a Heroku `bash` session you can investigate the dependencies:
 $ heroku run -a <appname> bash
 
 ~ $ convert -version
-Version: ImageMagick 7.1.0-42 Q16-HDRI x86_64 2022-01-29 https://imagemagick.org
+Version: ImageMagick 7.1.0-43 Q16-HDRI x86_64 2022-01-29 https://imagemagick.org
 Copyright: (C) 1999-2021 ImageMagick Studio LLC
 License: https://imagemagick.org/script/license.php
 Features: Cipher DPC HDRI OpenMP(4.5)
@@ -78,7 +78,7 @@ To update the dependencies you have the following steps:
     ./build.sh
     ```
 
-3. Git the changes, including the tar.gz file, and push to your fork
+3. Commit the changes, including the tar.gz file, and push to your fork
 4. Purge your Heroku application's cache
 
    ```plain
