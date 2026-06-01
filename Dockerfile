@@ -1,5 +1,6 @@
-FROM heroku/heroku:22-build
+FROM heroku/heroku:26-build
 ARG DEBIAN_FRONTEND=noninteractive
+USER root
 
 # See env vars below to update package versions
 # * $LIBIMAGEMAGICK_VERSION
@@ -7,8 +8,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 # * $LIBHIEF_VERSION
 # * $LIBDE265_VERSION
 
-RUN apt-get update && apt-get install -y \
-  libheif-dev libjpeg-dev libpng-dev libtiff-dev libgif-dev libomp-dev
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  libheif-dev libjpeg-dev libpng-dev libtiff-dev libgif-dev libomp-dev \
+  && rm -rf /var/lib/apt/lists/*
 
 # https://github.com/strukturag/libde265/releases
 ENV LIBDE265_VERSION=1.0.8
@@ -40,11 +42,11 @@ RUN cd /opt \
   && make \
   && make install
 
-ENV PATH="/usr/src/imagemagick/bin:$PATH:\$PATH"
-ENV CPPPATH="/usr/src/imagemagick/include:$CPPPATH"
-ENV CPATH="/usr/src/imagemagick/include:$CPATH"
-ENV LIBRARY_PATH="/usr/src/imagemagick/lib:$LIBRARY_PATH"
-ENV LD_LIBRARY_PATH="/usr/src/imagemagick/lib:$LD_LIBRARY_PATH"
+ENV PATH="/usr/src/imagemagick/bin:$PATH"
+ENV CPPPATH="/usr/src/imagemagick/include"
+ENV CPATH="/usr/src/imagemagick/include"
+ENV LIBRARY_PATH="/usr/src/imagemagick/lib"
+ENV LD_LIBRARY_PATH="/usr/src/imagemagick/lib"
 
 # Remove libwebp from heroku image
 RUN ldconfig /usr/src/imagemagick/lib/
